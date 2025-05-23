@@ -8,7 +8,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', '223562326512630659986132023')
     # JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     API_TITLE = 'Pharmacy API'
     API_VERSION = 'v1'
     OPENAPI_VERSION = '3.0.3'
@@ -36,7 +35,9 @@ class ProductionConfig(Config):
     """Production configuration."""
     DEBUG = False
     # Production database URL should be set in environment variables
-    
+    # If DATABASE_URL is not set, fall back to SQLite for basic functionality
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') or 'sqlite:///instance/pharmacy_prod.db'
+
 config_by_name = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
