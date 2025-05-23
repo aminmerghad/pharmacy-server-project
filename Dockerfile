@@ -27,7 +27,8 @@ COPY . .
 # Create instance directory for database and set permissions
 RUN mkdir -p instance && \
     adduser --disabled-password --gecos '' appuser && \
-    chown -R appuser:appuser /app
+    chown -R appuser:appuser /app && \
+    chmod 755 /app/instance
 
 # Switch to non-root user
 USER appuser

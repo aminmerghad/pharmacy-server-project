@@ -36,7 +36,8 @@ class ProductionConfig(Config):
     DEBUG = False
     # Production database URL should be set in environment variables
     # If DATABASE_URL is not set, fall back to SQLite for basic functionality
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') or 'sqlite:///instance/pharmacy_prod.db'
+    _default_db_path = os.path.join(os.getcwd(), 'instance', 'pharmacy_prod.db')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') or f'sqlite:///{_default_db_path}'
 
 config_by_name = {
     'development': DevelopmentConfig,
