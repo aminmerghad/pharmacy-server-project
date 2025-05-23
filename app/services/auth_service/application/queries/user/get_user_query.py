@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-
-from sqlalchemy import UUID
+from uuid import UUID
 
 
 @dataclass
