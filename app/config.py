@@ -22,8 +22,8 @@ class Config:
 class DevelopmentConfig(Config):
     """Development configuration."""
     DEBUG = True
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-    SQLALCHEMY_DATABASE_URI= "sqlite:///pharmacy1.db"
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    # SQLALCHEMY_DATABASE_URI= "sqlite:///pharmacy1.db"
 
 class TestingConfig(Config):
     """Testing configuration."""
