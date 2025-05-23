@@ -1,8 +1,9 @@
 import uuid
-from sqlalchemy import UUID, Column, Enum, String, DateTime
+from sqlalchemy import Column, Enum, String, DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 from app.dataBase import db
+from app.shared.database_types import UUID
 from app.services.product_service.domain.enums.product_status import ProductStatus
 
 class ProductModel(db.Model):

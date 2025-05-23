@@ -1,9 +1,10 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, DateTime, Enum, Float, ForeignKey, Integer, String, Text, UUID
+from sqlalchemy import Column, DateTime, Enum, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
 
 from app.dataBase import db
+from app.shared.database_types import UUID
 from app.services.inventory_service.domain.enums.movement_type import MovementType
 
 

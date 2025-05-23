@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
 import uuid
-from sqlalchemy import UUID, Column, DateTime, Enum, ForeignKey, Integer, Float, String, Text
+from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Float, String, Text
 from sqlalchemy.orm import relationship
+from app.shared.database_types import UUID
 from app.dataBase import db
 
 class InventoryModel(db.Model):

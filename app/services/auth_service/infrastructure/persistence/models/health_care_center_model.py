@@ -1,12 +1,13 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, String, Boolean, DateTime, UUID
+from sqlalchemy import Column, String, Boolean, DateTime
+from app.shared.database_types import UUID
 from app.dataBase import db
 
 class HealthCareCenterModel(db.Model):
     __tablename__ = 'health_care_centers'
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(UUID, primary_key=True, default=uuid.uuid4)
     name = Column(String(255), nullable=False)
     address = Column(String(500), nullable=False)
     phone = Column(String(20), nullable=False)

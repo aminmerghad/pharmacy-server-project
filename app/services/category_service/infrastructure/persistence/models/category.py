@@ -1,8 +1,8 @@
 from uuid import uuid4
 from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from app.dataBase import db
+from app.shared.database_types import UUID
 
 class Category(db.Model):
     __tablename__ = 'categories'

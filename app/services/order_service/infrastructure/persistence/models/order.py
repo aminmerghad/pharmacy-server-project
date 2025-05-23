@@ -1,12 +1,13 @@
 from datetime import datetime
 import uuid
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Numeric, String, Table
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
 from app.dataBase import db
+from app.shared.database_types import UUID
 from app.services.order_service.domain.value_objects.order_status import OrderStatus
 from datetime import UTC
+
 class OrderModel(db.Model):
     __tablename__ = 'orders'
 

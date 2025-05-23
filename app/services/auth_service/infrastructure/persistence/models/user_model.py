@@ -1,8 +1,8 @@
 from datetime import datetime, timezone
 from uuid import uuid4
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
-from sqlalchemy.dialects.postgresql import UUID
 from app.dataBase import db
+from app.shared.database_types import UUID
 
 class UserModel(db.Model):
     __tablename__ = 'users'
