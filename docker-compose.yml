@@ -1,0 +1,51 @@
+
+services:
+  pharmacy-api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - PORT=5000
+      - SECRET_KEY=your-secret-key-here
+      - JWT_SECRET_KEY=223562326512630659986132023
+      - ADMIN_INITIALIZATION_KEY=your-admin-initialization-key-here
+      # Override SQLite path for container
+      - SQLALCHEMY_DATABASE_URI=sqlite:///instance/pharmacy1.db
+    volumes:
+      # Mount instance directory to persist database
+      - ./instance:/app/instance
+      # Mount source code for development (remove in production)
+      - ./app:/app/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+  # Optional: Add a production service
+  pharmacy-api-prod:
+    build: .
+    ports:
+      - "8000:5000"
+    environment:
+      - FLASK_ENV=production
+      - PORT=5000
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-223562326512630659986132023}
+      - ADMIN_INITIALIZATION_KEY=${ADMIN_INITIALIZATION_KEY:-your-admin-initialization-key-here}
+      # Use PostgreSQL for production (or SQLite if preferred)
+      - SQLALCHEMY_DATABASE_URI=${DATABASE_URL:-sqlite:///instance/pharmacy1.db}
+    volumes:
+      - ./instance:/app/instance
+    restart: unless-stopped
+    profiles:
+      - production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 
