@@ -4,7 +4,7 @@ from http import HTTPStatus
 from flask_smorest import abort
 from werkzeug.exceptions import UnprocessableEntity
 from app.shared.domain.exceptions.common_errors import BaseAPIException
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from flask_smorest import Api
 from app.shared.utils.api_response import APIResponse
 from flask import current_app
@@ -55,26 +55,25 @@ class BaseRoute(MethodView):
 health_bp = Blueprint('health', __name__, url_prefix='/health')
 
 @health_bp.route('/')
-class HealthCheck(BaseRoute):
+def health_check():
     """Health check endpoint to verify server status"""
-    
-    def get(self):
-        """Check if the server is running correctly"""
-        health_data = {
-            "status": "healthy",
-            "timestamp": datetime.datetime.now().isoformat(),
-            "version": getattr(current_app, 'version', '1.0.0'),
-            "services": {
-                "auth": "available",
-                "product": "available",
-                "order": "available",
-                "inventory": "available"
-            }
+    health_data = {
+        "status": "healthy",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "version": getattr(current_app, 'version', '1.0.0'),
+        "services": {
+            "auth": "available",
+            "product": "available",
+            "order": "available",
+            "inventory": "available"
         }
-        
-        return self._success_response(
-            data=health_data,
-            message="Server is running correctly",
-            status_code=HTTPStatus.OK
-        )
+    }
+    
+    response = {
+        "code": HTTPStatus.OK,
+        "message": "Server is running correctly",
+        "data": health_data
+    }
+    
+    return jsonify(response), HTTPStatus.OK
         
