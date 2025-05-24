@@ -1,6 +1,7 @@
 import os
 from datetime import timedelta
 import secrets
+
 class Config:
     """Base configuration."""
     SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
@@ -22,8 +23,8 @@ class Config:
 class DevelopmentConfig(Config):
     """Development configuration."""
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-    # SQLALCHEMY_DATABASE_URI= "sqlite:///pharmacy1.db"
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    SQLALCHEMY_DATABASE_URI = "postgresql://pharmacy_db_ghv6_user:XbzLX3BJDC4770h7vbdWWdaZK0Fp13KK@dpg-d0opaimuk2gs738u3o80-a/pharmacy_db_ghv6"
 
 class TestingConfig(Config):
     """Testing configuration."""
