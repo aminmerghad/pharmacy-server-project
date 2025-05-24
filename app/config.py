@@ -24,7 +24,7 @@ class DevelopmentConfig(Config):
     """Development configuration."""
     DEBUG = True
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-    SQLALCHEMY_DATABASE_URI = "postgresql://pharmacy_db_ghv6_user:XbzLX3BJDC4770h7vbdWWdaZK0Fp13KK@dpg-d0opaimuk2gs738u3o80-a/pharmacy_db_ghv6"
+    SQLALCHEMY_DATABASE_URI = "postgresql://0pharmacy_db_ghv6_user:XbzLX3BJDC4770h7vbdWWdaZK0Fp13KK@dpg-d0opaimuk2gs738u3o80-a/pharmacy_db_ghv6"
 
 class TestingConfig(Config):
     """Testing configuration."""
